@@ -1,0 +1,21 @@
+#,Type,Question,Expected answer,Source,Bot answer,Pass/Fail
+1,Direct,How many casual leaves do employees get per year?,14 days,Handbook,same as expected,pass
+2,Direct,What are the regular working hours?,"10:30 AM to 7:00 PM, Monday to Friday",Handbook,same as expected,pass
+3,Direct,How long is the probation period?,5 months,Handbook,same as expected,pass
+4,Direct,Which day is the mandatory in-office day?,Wednesday,Handbook,same as expected,pass
+5,Direct,"How long must a password be, and how often must it be changed?","At least 14 characters, changed every 75 days",IT Policy,same as expected,pass
+6,Direct,After how many minutes does the screen auto-lock?,4 minutes,IT Policy,same as expected,pass
+7,Direct,What is the refund window for NovaDesk?,9 days from first payment,FAQ,same as expected,pass
+8,Direct,"How long is the NovaDesk free trial, and is a credit card needed?","21 days, no credit card",FAQ,same as expected,pass
+9,Direct,What does the Growth plan cost?,"Rs. 1,899 per agent per month",FAQ,same as expected,pass
+10,Multi-part,I join on July 10. How many casual leaves do I get this year?,"6 (July through December, since I joined before the 15th)",Handbook,same as expected,pass
+11,Multi-part,I have 11 unused earned leaves at year end. How many carry forward?,7 (the maximum carry-forward),Handbook,same as expected,pass
+12,Multi-part,What is the annual cost of the Growth plan for 4 agents?,"Rs. 75,960 (Rs. 1,899 x 4 agents x 10 months)",FAQ,same as expected,pass
+13,Multi-part,What is my notice period during probation versus after confirmation?,"15 days during probation, 45 days after confirmation",Handbook,same as expected,pass
+14,Cross-doc,My laptop was stolen. Who do I contact and by when?,"IT helpdesk within 2 hours (it-help@technova.example or ext. 202), then tell your manager",IT Policy,same as expected,pass
+15,Cross-doc,"How many days can I work from home, and what must I do when accessing internal tools?",Up to 2 days per week with manager approval; connect to the NovaSecure VPN,Handbook + IT,same as expected,pass
+16,Cross-doc,"Who do I email for HR questions, and what are the IT helpdesk hours?","hr@technova.example; 8:00 AM to 9:00 PM, Monday to Saturday",Handbook + IT,same as expected,pass
+17,Out of scope,What is the CEO's salary?,"""I couldn't find that in the documents.""",none,same as expected,pass
+18,Out of scope,Does TechNova offer stock options?,"""I couldn't find that in the documents.""",none,same as expected,pass
+19,Out of scope,What is the capital of France?,"""I couldn't find that in the documents.""",none,same as expected,pass
+20,Follow-up,(a) How many sick leaves do I get? (b) Then ask: Do I need a certificate for that?,(a) 9 days per year; (b) only if taking 3 or more consecutive days,Handbook,same as expected,pass

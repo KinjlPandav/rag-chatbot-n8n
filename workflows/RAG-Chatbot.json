@@ -1,0 +1,201 @@
+{
+  "name": "RAG - Chatbot",
+  "nodes": [
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        0,
+        0
+      ],
+      "id": "fb11f7da-9d00-402d-83af-c4a1ba0fb523",
+      "name": "When clicking ‘Execute workflow’"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.chatTrigger",
+      "typeVersion": 1.5,
+      "position": [
+        224,
+        0
+      ],
+      "id": "d7443a84-efa7-4351-afce-412574563587",
+      "name": "When chat message received",
+      "webhookId": "8085068d-7924-4adb-8c58-9b0ed84b585c"
+    },
+    {
+      "parameters": {
+        "options": {
+          "systemMessage": "You are a helpful assistant that answers questions about our documents.\nRules:\n1. ALWAYS use the knowledge base tool to search before answering.\n2. Answer ONLY from the retrieved information.\n3. If the answer is not in the retrieved information, reply exactly:\n   \"I couldn't find that in the documents.\"\n4. Keep answers short and clear. Mention the source file when possible."
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 3.1,
+      "position": [
+        448,
+        0
+      ],
+      "id": "333bde10-2a13-4c34-b50c-8589ea915482",
+      "name": "AI Agent"
+    },
+    {
+      "parameters": {
+        "options": {
+          "temperature": 0.2
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+      "typeVersion": 1.2,
+      "position": [
+        320,
+        208
+      ],
+      "id": "55e51094-1bde-4d96-a415-295ee73b724c",
+      "name": "Google Gemini Chat Model",
+      "credentials": {
+        "googlePalmApi": {
+          "id": null,
+          "name": "",
+          "__aiGatewayManaged": true
+        }
+      }
+    },
+    {
+      "parameters": {},
+      "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
+      "typeVersion": 1.4,
+      "position": [
+        464,
+        208
+      ],
+      "id": "2f98646d-9645-45fc-a9fb-7cc79e8ebf60",
+      "name": "Simple Memory"
+    },
+    {
+      "parameters": {
+        "mode": "retrieve-as-tool",
+        "toolDescription": "Searches the uploaded company documents. Use it for any question about policies,\nprocedures, pricing, or facts in the documents.",
+        "pineconeIndex": {
+          "__rl": true,
+          "value": "rag-docs",
+          "mode": "list",
+          "cachedResultName": "rag-docs"
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.vectorStorePinecone",
+      "typeVersion": 1.3,
+      "position": [
+        544,
+        320
+      ],
+      "id": "97009f93-a958-4bd0-bf55-2cb2f0e1128f",
+      "name": "Pinecone Vector Store",
+      "credentials": {
+        "pineconeApi": {
+          "id": "OjSqyGA7JOlDOB2B",
+          "name": "Pinecone account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.embeddingsOpenAi",
+      "typeVersion": 1.2,
+      "position": [
+        640,
+        480
+      ],
+      "id": "1d5ef0cf-b904-4c30-be40-e088749c6574",
+      "name": "Embeddings OpenAI",
+      "credentials": {
+        "openAiApi": {
+          "id": null,
+          "name": "",
+          "__aiGatewayManaged": true
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "When clicking ‘Execute workflow’": {
+      "main": [
+        []
+      ]
+    },
+    "When chat message received": {
+      "main": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Gemini Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Simple Memory": {
+      "ai_memory": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_memory",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Pinecone Vector Store": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Embeddings OpenAI": {
+      "ai_embedding": [
+        [
+          {
+            "node": "Pinecone Vector Store",
+            "type": "ai_embedding",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate"
+  },
+  "versionId": "8d20926c-3dc9-4152-ae57-eac42b3eefe4",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "488ef170bfc356bbaf2ee0672e11daa03f81f75114d9584d430f48c12bcb6355"
+  },
+  "nodeGroups": [],
+  "id": "zL1ItbQyjE49Jxj9",
+  "tags": []
+}
