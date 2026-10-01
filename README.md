@@ -110,4 +110,4 @@ Full question list, expected answers, and bot answers: `test-results/rag-chatbot
 
 ## Author
 
-[Your name] | [LinkedIn or email]
+[kinjl Pandav] | [kinjlpandav@gmail.com]
