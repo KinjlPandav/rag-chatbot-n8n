@@ -2,8 +2,6 @@
 
 A document question-answering chatbot built in **n8n** using Retrieval-Augmented Generation (RAG). It answers questions only from uploaded PDF documents and politely declines questions that are not covered by them.
 
-**Demo video:** [add link here]
-
 ## Overview
 
 The project has two separate n8n workflows that share one Pinecone vector index:
